@@ -1,0 +1,1 @@
+php 5.7 + jre8 Dockerfile

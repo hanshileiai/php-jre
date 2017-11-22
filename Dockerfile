@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git libmagickwand-dev --no-install-recommends \
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git curl libmagickwand-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd pdo_mysql zip opcache \
@@ -19,6 +19,9 @@ RUN echo " Add Oracle JRE 8 repository:"  && \
 RUN echo " Install Oracle JRE:"  && \
     DEBIAN_FRONTEND=noninteractive  apt-get -o Dpkg::Options::='--force-confnew' -y install update-sun-jre
 
+RUN echo " Install node, npm: " && \ 
+    curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
+    apt-get install -y nodejs
 
 RUN echo " Clean up:"  && \
     rm -rf /var/cache/update-sun-jre  && \

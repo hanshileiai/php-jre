@@ -28,3 +28,11 @@ RUN echo " Clean up:"  && \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
+Run echo "install ghostscript: " && \
+    && wget https://github.com/luvvien/resources/raw/master/ghostscript-9.22-linux-x86_64.tar.gz\
+    && tar -xzvf ghostscript-9.22-linux-x86_64.tar.gz \
+    && cd ghostscript-9.22-linux-x86_64 \
+    && cp gs-922-linux-x86_64 /usr/local/bin/gs \
+    && cp gs-922-linux-x86_64 /usr/bin/gs \
+    && rm ../ghostscript-9.22-linux-x86_64.tar.gz \
+    && rm -rf ghostscript-9.22-linux-x86_64 \

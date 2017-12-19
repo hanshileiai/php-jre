@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git curl wget libmagickwand-dev --no-install-recommends \
+RUN apt-get update && apt-get install -y locales libpng12-dev libjpeg-dev git curl wget libmagickwand-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd pdo_mysql zip opcache \
@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git curl wget 
     && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
-RUN apt-get install -y install locales && locale-gen en_US.UTF-8
+RUN locale-gen zh_CN.UTF-8
 ENV LANG en_US.UTF-8    
 ENV LANGUAGE en_US:en    
 ENV LC_ALL en_US.UTF-8 

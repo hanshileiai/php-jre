@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git curl wget 
     && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
-RUN locale-gen en_US.UTF-8
+RUN apt-get install -y install locales && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8    
 ENV LANGUAGE en_US:en    
 ENV LC_ALL en_US.UTF-8 

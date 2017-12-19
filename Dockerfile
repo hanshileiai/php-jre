@@ -9,6 +9,12 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git curl wget 
     && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8    
+ENV LANGUAGE en_US:en    
+ENV LC_ALL en_US.UTF-8 
+
+
 RUN DEBIAN_FRONTEND=noninteractive echo " Install imagick:" && pecl install imagick && docker-php-ext-enable imagick 
 
 RUN echo " Add Oracle JRE 8 repository:"  && \
@@ -23,11 +29,6 @@ RUN echo " Install node, npm: " && \
     curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
     apt-get install -y nodejs
 
-RUN echo " Clean up:"  && \
-    rm -rf /var/cache/update-sun-jre  && \
-    apt-get clean  && \
-    rm -rf /var/lib/apt/lists/*
-
 Run echo "install ghostscript: " \
     && wget https://github.com/luvvien/resources/raw/master/ghostscript-9.22-linux-x86_64.tar.gz \
     && tar -xzvf ghostscript-9.22-linux-x86_64.tar.gz \
@@ -36,3 +37,10 @@ Run echo "install ghostscript: " \
     && cp gs-922-linux-x86_64 /usr/bin/gs \
     && rm ../ghostscript-9.22-linux-x86_64.tar.gz \
     && rm -rf ghostscript-9.22-linux-x86_64
+
+RUN echo " Clean up:"  && \
+    rm -rf /var/cache/update-sun-jre  && \
+    apt-get clean  && \
+    rm -rf /var/lib/apt/lists/*
+
+

@@ -9,10 +9,7 @@ RUN apt-get update && apt-get install -y locales libpng12-dev libjpeg-dev git cu
     && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8    
-ENV LANGUAGE en_US:en    
-ENV LC_ALL en_US.UTF-8 
+ENV LANG C.UTF-8
 
 
 RUN DEBIAN_FRONTEND=noninteractive echo " Install imagick:" && pecl install imagick && docker-php-ext-enable imagick 

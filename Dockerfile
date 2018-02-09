@@ -19,6 +19,9 @@ RUN echo " Add Oracle JRE 8 repository:"  && \
     apt-key adv --keyserver keys.gnupg.net --recv-keys 5CB26B26  && \
     apt-get update && apt-get upgrade -y
 
+RUN echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list && \ 
+    apt-get -qqy update && \ apt-get -qqy install -y pdf2htmlex
+
 RUN echo " Install Oracle JRE:"  && \
     DEBIAN_FRONTEND=noninteractive  apt-get -o Dpkg::Options::='--force-confnew' -y install update-sun-jre
 
